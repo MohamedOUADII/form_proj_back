@@ -32,7 +32,6 @@ public class UserService {
                 userRequest.getPhone()
         );
         sendMail(userRepository.save(user));
-
     }
 
     boolean sendMail(User user){
@@ -49,9 +48,6 @@ public class UserService {
         return UUID.randomUUID().toString();
     }
 
-    public void generateQrFromCode(){
-
-    }
 
 
 }

@@ -33,7 +33,6 @@ public class SendMailService {
     private final AppConfig appConfig;
     private static final Logger logger = LoggerFactory.getLogger(SendMailService.class);
 
-    private static String imagesPath= "C:\\Users\\Simo\\Documents\\JavaDev\\projform\\src\\main\\java\\com\\example\\projform\\imgs\\";
     public void sendMail(User user){
 
         Properties properties = System.getProperties();
@@ -53,33 +52,15 @@ public class SendMailService {
                     "<h3>Hello " +user.getFirst_name()+" "+user.getLast_name()+"</h3>"+
                     "<br/><p>this email is for confirmation , check your Qr code to know your id</p>"+
                     "<img src='"+appConfig.getUrl()+"/api/v1/qr/"+ user.getId()+"'/>"+
-//                    "<img src= 'data:image/gif;base64,"+getQrCodeForUserData(user.getId())+"' width='250' height='250' alt='embedded folder icon' />"+
-//                    "<a href = '"+appConfig.getUrl()+"/api/v1/qr/"+user.getId()+"'>Qr here</a>"+
                     "</div>";
 
             Multipart multiPart = new MimeMultipart();
 
-//            MimeBodyPart textPart = new MimeBodyPart();
             MimeBodyPart htmlPart = new MimeBodyPart();
 
             htmlPart.setContent(html, "text/html; charset=utf-8");
             htmlPart.setHeader("Cache-Control","<no-cache>");
-            MimeBodyPart qrImage = new MimeBodyPart();
-
-            byte[] imageBytes = ((DataBufferByte) getQrCodeForUser(user.getId()).getData().getDataBuffer()).getData();
-
-            ByteArrayDataSource bds = new ByteArrayDataSource(imageBytes, "image/png");
-            qrImage.setDataHandler(new DataHandler(bds));
-            qrImage.setFileName("qrImage_"+user.getCode().substring(0,8)+".png");
-            qrImage.setHeader("Content-ID", "<image>");
-            qrImage.setHeader("Content-Type","image/png");
-
-//            File file = new File(imagesPath+user.getId()+".png");
-//            qrImage.attachFile(file);
-//            multiPart.addBodyPart(textPart);
-
             multiPart.addBodyPart(htmlPart);
-//            multiPart.addBodyPart(qrImage);
 
             message.setContent(multiPart);
 
@@ -106,29 +87,13 @@ public class SendMailService {
                 .stream();
 
         ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
-//        BufferedImage qrImage =
                 return ImageIO.read(bis);
         }else{
             return null;
         }
-//        ImageIO.write( qrImage, "png", new File(imagesPath+user.getCode().substring(0,8)+".png") );
-//        return ImageIO.read(bis);
+
     }
-//    public ByteArrayOutputStream getQrCodeForUserData(Long id) throws Exception {
-//        Optional<User> user = userRepository.findById(id);
-//
-//        logger.info(user.get().getCode());
-//        ByteArrayOutputStream stream = QRCode
-//                .from(user.get().getCode())
-//                .withSize(250, 250)
-//                .stream();
-//
-////        ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
-////        BufferedImage qrImage =
-//        return stream;
-////        ImageIO.write( qrImage, "png", new File(imagesPath+user.getCode().substring(0,8)+".png") );
-////        return ImageIO.read(bis);
-//    }
+
 
 
 
