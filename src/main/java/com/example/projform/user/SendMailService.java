@@ -18,6 +18,7 @@ import java.awt.color.ColorSpace;
 import java.awt.image.*;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.util.Optional;
 import java.util.Properties;
 
 @Service
@@ -110,10 +111,10 @@ public class SendMailService {
 //        return ImageIO.read(bis);
     }
     public ByteArrayOutputStream getQrCodeForUserData(Long id) throws Exception {
-        User user = userRepository.findById(id).orElseThrow();
-        logger.info(user.getCode());
+        Optional<User> user = userRepository.findById(id);
+        logger.info(user.get().getCode());
         ByteArrayOutputStream stream = QRCode
-                .from(user.getCode())
+                .from(user.get().getCode())
                 .withSize(250, 250)
                 .stream();
 
