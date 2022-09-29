@@ -79,7 +79,7 @@ public class SendMailService {
 //            multiPart.addBodyPart(textPart);
 
             multiPart.addBodyPart(htmlPart);
-            multiPart.addBodyPart(qrImage);
+//            multiPart.addBodyPart(qrImage);
 
             message.setContent(multiPart);
 
