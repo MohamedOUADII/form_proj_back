@@ -97,33 +97,38 @@ public class SendMailService {
 
     }
     public BufferedImage getQrCodeForUser(Long id) throws Exception {
-        User user = userRepository.findById(id).orElseThrow();
-        logger.info(user.getCode());
-        ByteArrayOutputStream stream = QRCode
-                .from(user.getCode())
-                .withSize(250, 250)
-                .stream();
-
-        ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
-//        BufferedImage qrImage =
-                return ImageIO.read(bis);
-//        ImageIO.write( qrImage, "png", new File(imagesPath+user.getCode().substring(0,8)+".png") );
-//        return ImageIO.read(bis);
-    }
-    public ByteArrayOutputStream getQrCodeForUserData(Long id) throws Exception {
         Optional<User> user = userRepository.findById(id);
+        if(user.isPresent()){
         logger.info(user.get().getCode());
         ByteArrayOutputStream stream = QRCode
                 .from(user.get().getCode())
                 .withSize(250, 250)
                 .stream();
 
-//        ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
+        ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
 //        BufferedImage qrImage =
-        return stream;
+                return ImageIO.read(bis);
+        }else{
+            return null;
+        }
 //        ImageIO.write( qrImage, "png", new File(imagesPath+user.getCode().substring(0,8)+".png") );
 //        return ImageIO.read(bis);
     }
+//    public ByteArrayOutputStream getQrCodeForUserData(Long id) throws Exception {
+//        Optional<User> user = userRepository.findById(id);
+//
+//        logger.info(user.get().getCode());
+//        ByteArrayOutputStream stream = QRCode
+//                .from(user.get().getCode())
+//                .withSize(250, 250)
+//                .stream();
+//
+////        ByteArrayInputStream bis = new ByteArrayInputStream(stream.toByteArray());
+////        BufferedImage qrImage =
+//        return stream;
+////        ImageIO.write( qrImage, "png", new File(imagesPath+user.getCode().substring(0,8)+".png") );
+////        return ImageIO.read(bis);
+//    }
 
 
 
