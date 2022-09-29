@@ -54,7 +54,7 @@ public class SendMailService {
                     "<br/><p>this email is for confirmation , check your Qr code to know your id</p>"+
                     "<img src='"+appConfig.getUrl()+"/api/v1/qr/"+ user.getId()+"'/>"+
 //                    "<img src= 'data:image/gif;base64,"+getQrCodeForUserData(user.getId())+"' width='250' height='250' alt='embedded folder icon' />"+
-                    "<a href = '"+appConfig.getUrl()+"/api/v1/qr/"+user.getId()+"'>Qr here</a>"+
+//                    "<a href = '"+appConfig.getUrl()+"/api/v1/qr/"+user.getId()+"'>Qr here</a>"+
                     "</div>";
 
             Multipart multiPart = new MimeMultipart();
