@@ -52,7 +52,7 @@ public class SendMailService {
             String html = "<div>" +
                     "<h3>Hello " +user.getFirst_name()+" "+user.getLast_name()+"</h3>"+
                     "<br/><p>this email is for confirmation , check your Qr code to know your id</p>"+
-//                    "<img src='http://localhost:8080/api/v1/qr/"+ user.getId()+"'/>"+
+                    "<img src='"+appConfig.getUrl()+"/api/v1/qr/"+ user.getId()+"'/>"+
 //                    "<img src= 'data:image/gif;base64,"+getQrCodeForUserData(user.getId())+"' width='250' height='250' alt='embedded folder icon' />"+
                     "<a href = '"+appConfig.getUrl()+"/api/v1/qr/"+user.getId()+"'>Qr here</a>"+
                     "</div>";
