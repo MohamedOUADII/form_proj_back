@@ -1,5 +1,6 @@
 package com.example.projform;
 
+import com.example.projform.user.AppConfig;
 import com.example.projform.user.SendMailService;
 import com.example.projform.user.User;
 import com.example.projform.user.UserRepository;
@@ -52,10 +53,10 @@ public class ProjformApplication {
 		return new BufferedImageHttpMessageConverter();
 	}
     @Bean
-    public CorsFilter corsFilter() {
+    public CorsFilter corsFilter(AppConfig appConfig) {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setAllowedOrigins(Arrays.asList("http://localhost:4200","https://form-proj-front.herokuapp.com/"));
+        corsConfiguration.setAllowedOrigins(Arrays.asList(appConfig.getEmail()));
         corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
                 "Accept", "Authorization", "Origin, Accept", "X-Requested-With",
                 "Access-Control-Request-Method", "Access-Control-Request-Headers"));
