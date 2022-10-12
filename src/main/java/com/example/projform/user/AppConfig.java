@@ -16,5 +16,7 @@ public class AppConfig {
 
     @NotNull
     private String url;
+    @NotNull
+    private String email;
 
 }

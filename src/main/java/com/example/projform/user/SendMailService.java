@@ -43,7 +43,7 @@ public class SendMailService {
 
         try {
             MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("momoouadii1998@gmail.com"));
+            message.setFrom(new InternetAddress(appConfig.getEmail()));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(user.getEmail()));
             message.setSubject("test application form");
             // todo:: add email form to send to user

@@ -35,12 +35,11 @@ public class ProjformApplication {
 		return args -> {
 			userRepository.save(new User(
 					UUID.randomUUID().toString(),
-					"ouadii",
-					"mohamed",
-					"ouadii@gmail.com",
+					"momo",
+					"omom",
+					"momo@gmail.com",
 					"0612121212"
 			));
-			sendMail.sendMail(userRepository.save(new User("mo.ouadii98@gmail.com")));
 		};
 	}
 
